@@ -1,0 +1,16 @@
+Really good videos from udemy.
+Complete React Developer Course.
+
+The main all we worked on is the indecision app. It's
+in the subdirectory.
+
+To run any client side stuff you need a server running
+and a javascript compiler which can convert the ES6/ES7
+code into ES5 which the browsers can handle.
+
+In the indecisionApp directory you will find two scripts.
+start-server.sh just starts a simple web server which runs
+on port 8080.
+start-babel.sh is a script which runs a compiler. You need
+to pay attention in there what directory it will look in
+for compiling and where it will put the result.

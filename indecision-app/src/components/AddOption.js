@@ -11,7 +11,6 @@ export default class AddOption extends React.Component {
     handleAddOptionInside(evt) {
         evt.preventDefault();
         const val = evt.target.elements.newOption.value;
-
         const error = this.props.handleAddOption(val);
 
         this.setState(() => ({ error: error }));

@@ -1,10 +1,18 @@
-// this is basically a node config file
 const path = require('path');
 
+// the loader below is to inform webpack what to use to convert the es6 to es5.
+// this is used in concert with the .babelrc file in the root of the project.
 module.exports = {
     entry: './src/app.js',
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
+    },
+    module: {
+        rules: [{
+            loader: 'babel-loader',
+            test: /\.js$/,
+            exclude: /node_modules/
+        }]
     }
 }

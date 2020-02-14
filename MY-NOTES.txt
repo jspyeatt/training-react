@@ -4,13 +4,13 @@ Complete React Developer Course.
 The main all we worked on is the indecision app. It's
 in the subdirectory.
 
-To run any client side stuff you need a server running
-and a javascript compiler which can convert the ES6/ES7
-code into ES5 which the browsers can handle.
+To start the server go to the indecision-app directory and run
 
-In the indecisionApp directory you will find two scripts.
-start-server.sh just starts a simple web server which runs
-on port 8080.
-start-babel.sh is a script which runs a compiler. You need
-to pay attention in there what directory it will look in
-for compiling and where it will put the result.
+yarn serve   # starts our live-server
+yarn build   # starts webpack, which runs babel, which is the service
+             # that converts ES6/7 into ES5 for the browser.
+
+yarn add validator@8.0.0   # This adds a dependency to your package.json
+                           # file and adds the module to your node_modules
+                           # directory
+

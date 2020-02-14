@@ -1,21 +1,20 @@
 import React from 'react';
 
+// This class uses the new transform-classes syntax introduced
+// with the new plugin for es6. No longer need to do the .bind(this);
 export default class AddOption extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleAddOptionInside = this.handleAddOptionInside.bind(this);
-        this.state = {
-            error: undefined
-        };
-    }
-    handleAddOptionInside(evt) {
+    state = {
+        error: undefined
+    };
+
+    handleAddOptionInside = (evt) => {
         evt.preventDefault();
         const val = evt.target.elements.newOption.value;
         const error = this.props.handleAddOption(val);
 
         this.setState(() => ({ error: error }));
         evt.target.elements.newOption.value = '';
-    }
+    };
     render() {
         return (
             <div>

@@ -1,5 +1,8 @@
 // I created this file. This is needed by the loader in webpack.config.js
 // to determine how to run the babel command.
 {
-    "presets": ["env", "react"]
+    "presets": ["env", "react"],
+    "plugins": [
+        "transform-class-properties"
+    ]
 }

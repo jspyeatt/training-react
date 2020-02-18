@@ -4,4 +4,5 @@ import validator from 'validator';  // note we don't have ./ in front from 'vali
                                     // this flags the system to find the library from node_modules
 import IndecisionApp from './components/IndecisionApp';
 
-ReactDOM.render(<IndecisionApp />, document.getElementById("appHere"));
+
+ReactDOM.render(<IndecisionApp/>, document.getElementById("appHere"));

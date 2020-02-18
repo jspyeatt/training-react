@@ -1,8 +1,6 @@
 import React from 'react';
 
-const Option = (props) => {
-
-    return (
+const Option = (props) => (
         <div>
             {props.optionText}
             <button
@@ -13,7 +11,6 @@ const Option = (props) => {
                 </button>
         </div>
     );
-}
 
 // we want to export this component down here instead of in the definition
 // itself because this is a functional component. And if we don't do it this

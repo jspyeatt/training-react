@@ -1,0 +1,11 @@
+// rem - is a sizing issue.
+// setting global font-size to 62.5 percent because 1rem=16pixels. So if
+// we multiply 16*62.5%=10. This ends up setting the ratio of rem-to-pixel
+// at 1 to 10. Ex. 2rem=20pixels.
+html {
+    font-size: 62.5%;
+}
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2.2rem;
+}

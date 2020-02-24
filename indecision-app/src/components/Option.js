@@ -1,17 +1,19 @@
 import React from 'react';
 
 const Option = (props) => (
-        <div>
+    <div className="option">
+        <p className="option__text">{props.count}.
             {props.optionText}
-            <button
+        </p>
+        <button
             className="button button--linkbutton"
-                onClick={(e) => {
-                    props.handleDeleteOption(props.optionText)
-                }}>
-                remove
+            onClick={(e) => {
+                props.handleDeleteOption(props.optionText)
+            }}>
+            remove
                 </button>
-        </div>
-    );
+    </div>
+);
 
 // we want to export this component down here instead of in the definition
 // itself because this is a functional component. And if we don't do it this

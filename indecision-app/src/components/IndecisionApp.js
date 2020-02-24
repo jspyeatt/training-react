@@ -23,7 +23,7 @@ class IndecisionApp extends React.Component {
         } catch (e) {
             console.log(e);
         }
-        
+
     }
     componentDidUpdate(prevProps, prevState) {
 
@@ -51,7 +51,7 @@ class IndecisionApp extends React.Component {
 
     handleClearsSelectedOptionState = () => {
         console.log("handleClearsSelectedOptionState")
-        this.setState(() => ({selectedOption: undefined}));
+        this.setState(() => ({ selectedOption: undefined }));
     };
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
@@ -80,18 +80,20 @@ class IndecisionApp extends React.Component {
         return (
             <div>
                 <Header title={title} subtitle={subTitle} />
-                <Action hasOptions={this.state.options.length != 0}
-                    handlePick={this.handlePick} />
-                <Options
-                    options={this.state.options}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                    handleDeleteOption={this.handleDeleteOption} />
-                <AddOption
-                    handleAddOption={this.handleAddOption} />
-                    <OptionModal
-                        selectedOption={this.state.selectedOption}
-                        clearOption={this.handleClearsSelectedOptionState}
-                    />
+                <div className="container">
+                    <Action hasOptions={this.state.options.length != 0}
+                        handlePick={this.handlePick} />
+                    <Options
+                        options={this.state.options}
+                        handleDeleteOptions={this.handleDeleteOptions}
+                        handleDeleteOption={this.handleDeleteOption} />
+                    <AddOption
+                        handleAddOption={this.handleAddOption} />
+                </div>
+                <OptionModal
+                    selectedOption={this.state.selectedOption}
+                    clearOption={this.handleClearsSelectedOptionState}
+                />
             </div>
         );
     }

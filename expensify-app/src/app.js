@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import validator from 'validator';  // note we don't have ./ in front from 'validator'
 // this flags the system to find the library from node_modules
 import 'normalize.css/normalize.css';
@@ -10,9 +10,7 @@ import './styles/styles.scss';
 const ExpenseDashboardPage = () => (
     <div>
         some text
-        <p><a href="/create">create</a></p>
-        <p><a href="/edit">edit</a></p>
-        <p><a href="/help">help</a></p>
+
     </div>
 );
 const AddExpensePage = () => (
@@ -32,18 +30,31 @@ const HelpPage = () => (
 );
 const NotFoundPage = () => (
     <div>
-        <h1>404!</h1>
+        <h1>404! - <Link to="/">Go Home</Link></h1>
     </div>
 );
+const Header = () => (
+    <div>
+        <h1>Expensify</h1>
+        <NavLink activeClassName="is-active" to="/" exact={true}>home</NavLink><br />
+        <NavLink activeClassName="is-active" to="/create">create</NavLink><br />
+        <NavLink activeClassName="is-active" to="/edit">edit</NavLink><br />
+        <NavLink activeClassName="is-active" to="/help">help</NavLink>
+    </div>
+);
+
 const routes = (
     <BrowserRouter>
-        <Switch>
-            <Route exact={true} path="/" component={ExpenseDashboardPage} />
-            <Route path="/create" component={AddExpensePage} />
-            <Route path="/edit" component={EditExpensePage} />
-            <Route path="/help" component={HelpPage} />
-            <Route component={NotFoundPage}/>
-        </Switch>
+        <div>
+            <Header />
+            <Switch>
+                <Route exact={true} path="/" component={ExpenseDashboardPage} />
+                <Route path="/create" component={AddExpensePage} />
+                <Route path="/edit" component={EditExpensePage} />
+                <Route path="/help" component={HelpPage} />
+                <Route component={NotFoundPage} />
+            </Switch>
+        </div>
     </BrowserRouter>
 );
 ReactDOM.render(routes, document.getElementById("appHere"));

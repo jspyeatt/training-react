@@ -4,13 +4,5 @@ Complete React Developer Course.
 The main all we worked on is the indecision app. It's
 in the subdirectory.
 
-To start the server go to the indecision-app directory and run
 
-yarn serve   # starts our live-server
-yarn build   # starts webpack, which runs babel, which is the service
-             # that converts ES6/7 into ES5 for the browser.
-
-yarn add validator@8.0.0   # This adds a dependency to your package.json
-                           # file and adds the module to your node_modules
-                           # directory
-
+yarn dev-server

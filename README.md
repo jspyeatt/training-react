@@ -49,6 +49,35 @@ live-server -v   - prints version
 
 live-server public   - serves the public directory on port 8080
 
-# Video 8
+# Video 8 - using react
+
+```html
+<body>
+<div id="apptag"></dev>
+
+<script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js">/<script>
+<script src="/scripts/app.js"></script>
+
+</body>
+```
+mkdir public/scripts
+
+Once you load the page you should be able to see React and ReactDOM objects in the javascript console.
+
+## JSX - javascript syntax extension, provided by react
+
+```javascript
+var template = <p>this is jsx</p>;
+var appRoot = document.getElementById('apptag');
+ReactDOM.render(template, appRoot);  // first arg is what to render, second is where to render it.
+```
+
+This will not render correctly because the code hasn't been compiled down to regular javascript.
+
+So we have to compile jsx with something (babeljs.io). Which compiles down to ES5 code which is what the browser recognizes.
+
+You can go to the `try it out` link on babeljs.io to type in jsx and have it show you the javascript created.
+
 
 

@@ -198,13 +198,13 @@ var user = {
 var userName = 'Mike';
 var template = (
 <div>
-  {app.subtitle && <p>app.subtitle</p>}
+  {app.subtitle && <p>app.subtitle</p>}  // CONDITIONALLY DISPLAY SUBTITLE ONLY IF IT EXISTS
   <p>{app.options.length > 0 ? 'Here are your options' : 'No opitons'}</p>
   <h1>{user.name} ? user.name : 'unknown'</h1>
-  {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+  {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}  // CONDITIONALLY DISPLAY AGE ONLY IF >= 18
   <h1>Location: {getLocation(user.location)}</h1>
 
-  {getGender(user.gender)}
+  {getGender(user.gender)} // ONLY DISPLAY GENDER FIELD IF IT ISN"T UNDEFINED
 </div>
 );
 var appRoot = document.getElementById('app');

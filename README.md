@@ -139,4 +139,75 @@ var template = (
 var appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
+# Video 11 - JSX Expressions
+
+```javascript
+var user = {
+  name: 'John',
+  age: 57
+};
+var userName = 'Mike';
+var template = (
+<div>
+  <h1>{userName}</h1>  // just adds as a javascript expression.
+  <h1>{user.age}</h1> 
+</div>
+);
+```
+
+# video 12 - Conditional Rendering
+```javascript
+function getLocation(loc) {
+   if (location) {
+      return location;
+   else {
+      return "Unknown";
+   }
+}
+
+function getGender(gender) {
+   if (gender) {
+      return <p>Gender: {gender}</p>
+   }
+   return;  // return undefined. 
+}
+
+var app = {
+   title: 'Indecision App',
+   subtitle: 'Trust the computer',
+   options: ['one', 'two']
+}
+
+var template = {
+  <div>
+    <h1>{app.title</h1>
+    <p>{app.subtitle}</p>
+    <ol>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+  </div>
+}
+var user = {
+  name: 'John',
+  age: 57,
+  location: 'Verona',
+  gender: 'male'
+};
+
+var userName = 'Mike';
+var template = (
+<div>
+  {app.subtitle && <p>app.subtitle</p>}
+  <p>{app.options.length > 0 ? 'Here are your options' : 'No opitons'}</p>
+  <h1>{user.name} ? user.name : 'unknown'</h1>
+  {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+  <h1>Location: {getLocation(user.location)}</h1>
+
+  {getGender(user.gender)}
+</div>
+);
+var appRoot = document.getElementById('app');
+ReactDOM.render(template, appRoot);
+```
 

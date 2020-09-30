@@ -344,3 +344,61 @@ const appRoot = document.getElementById('app');
 ReactCOM.render(templateTwo, appRoot);
 ```
 Very useful link https://reactjs.org/docs/dom-elements.html. All Supported HTML Attributes header lists all the REACT names for html attributes.
+
+# Video 17 - Manual Data binding
+
+When we have changes in the logic we need to re-render the components of the page. So change the rendering of templateTwo to a 
+function and call that function when the page firsts loads and anytime an event happens.
+
+```javascript
+const addOne = () => {
+  console.log('add one');
+  count++;
+  renderCounterApp();   // called everytime onclick.
+};
+const renderCounterApp = () => {
+	const templateTwo = {
+	  <div>
+	    <h1>Count: {count}</h1>
+	 <!-- IMPORTANT: the 'class' attribute is NOT used here, you have to use 'className' with JSX -->
+	    <button onClick={addOne} className='button'>+1</button>  <br/>
+	    <button onClick={minusOne} className='button'>-1</button> <br/>
+	    <button onClick={reset} className='button'>reset</button> <br/>
+	   </div>
+	};
+   ReactCOM.render(templateTwo, appRoot);
+};
+renderCounterApp(); // this is the initial load of the page
+
+```
+
+react uses a virtual dom algorithms in javascript so even though it appears you are re-rendering the entire page. react is smart
+enough to only re-render what's changed.
+
+# video 18 - Forms and Inputs
+
+```javascript
+
+const onFormSubmit = (e) => {
+   e.preventDefault(); // prevents full page reload and allows client to handle event.
+   console.log("onFormSubmit()");
+
+   // get the value the user typed
+   const option = e.target.elements.fred.value;
+   if (option) {
+      app.options.push(option);
+      e.target.elements.fred.value = '';   // reset to empty in the form itself after we've added to options array.
+   }
+};
+const template = {
+  <form onSubmit={onFormSubmit} >      // THIS IS WHERE WE ADD THE FUNCTION REFERENCE TO CALL onsubmit
+    <input type="text" name="fred"/>
+    <button>Add Option</button>
+  </form>
+};
+```
+We handle the form submit on the client and not submit to a new server request.
+Google Search: React DOM events SyntheticEvents is the object. You will see supported events.
+We want onSubmit event.
+
+# video 19 - arrays

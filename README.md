@@ -1,4 +1,3 @@
-[[_TOC_]]
 # Video 4 - Install VisualCode
 code.visualstudio.com
 
@@ -211,3 +210,137 @@ var appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
+# video 13 - ES6 aside - const and let
+
+```javascript
+var nameVar = 'Andrew';
+var nameVar = 'John';                     // javascript allows you to reassign and redefine everything about the value with var. This is bad.
+console.log('nameVar=' + nameVar);
+
+let nameLet = 'Fred';
+nameLet = 'Steve';     // I can reassign the value, but I can't redefine it. If I add second let nameLet = 'Bill'; It will fail to compile.
+console.log('nameLet = ' + nameLet);
+
+const nameConst = 'Ken';
+nameConst = 'Joe';           // This will fail because you cannot reassign nor redefine a const.
+console.log('nameConst = ' + nameConst);
+
+```
+
+Scoping is a bit different as well.
+
+var, let and const are function-scoped.
+
+```javascript
+function getPetName() {
+   var petName = 'Hal';
+   return petName;
+}
+console.log('petName = ' + petName);   // will not work because petName variable isn't in scope.
+```
+
+let and const are block-scoped.
+
+```javascript
+var fullName = 'John Pyeatt';
+if (fullName) {
+   var firstName = fullName.split(' ')[0];
+   console.log('firstName = ' + firstName);
+}
+console.log('firstName=' + firstName);   // var firstName is actually available here even though it is outside the block because vars aren't block-scoped.
+                                         // let and const are not. So if firstName were a let or const you'd get an undefined.
+```
+
+# video 14 - ES6 aside - arrow function
+
+```javascript
+// es5 function
+const square = function(x) {
+   return x * x;
+};
+
+// es6 function  - arrow functions are always anonymous. So you always have to assign it to a variable.
+const squareArrow = (x) => {
+	return x * x;
+};
+```
+
+Arrow function expression syntax
+```javascript
+const squareArrow = (x) => x * x;          // more concise version of the arrow function squareArrow
+                                           // we don't even specify a return statement.
+
+```
+
+# video 15 - ES6 aside - arrow functions 2
+
+```javascript
+// es5 function
+const add = function(a,b) {
+  console.log(arguments);    // arguments isn't accessible in arrow functions.
+  return a+b;
+};
+
+```
+
+`this` keyword is no longer bound.
+```javascript
+// object with es5 function
+const user = {
+  name: 'John',
+  cities: ['Philly', 'New York'],
+  printPlacesLived: function() {
+    console.log('name=' + this.name);          // es5 function, this keyword is bound to the function.
+  }
+};
+
+const user = {
+  name: 'John',
+  cities: ['Philly', 'New York'],
+  printPlacesLived: function() {
+    console.log('name=' + this.name);          // es5 function, this keyword is bound to the function.
+    this.cities.forEach(city) => {
+       console.log(this.name + ' has lived in ' + city);    // arrow function can reference list in this foreach, can't reference this keyword with es5 function.
+    };
+  }
+};
+
+```
+```javascript
+const multiplier {
+   numbers: [1, 5, 3, 10],
+   multiplyBy: 3,
+   multiply () {
+    return this.numbers.map((n) => this.multiplyBy * n);
+   }
+}
+console.log(multiplier. multiply());
+```
+
+# video 16 - React Events and Attributes
+```javascript
+let count = 0;
+const addOne = () => {
+  console.log('add one');
+  count++;
+};
+const minusOne = () => {
+  count--;
+};
+const reset = () => {
+  count = 0;
+};
+const templateTwo = {
+  <div>
+    <h1>Count: {count}</h1>
+ <!-- IMPORTANT: the 'class' attribute is NOT used here, you have to use 'className' with JSX -->
+    <button onClick={addOne} className='button'>+1</button>  <br/>
+    <button onClick={minusOne} className='button'>-1</button> <br/>
+    <button onClick={reset} className='button'>reset</button> <br/>
+   </div>
+};
+
+const appRoot = document.getElementById('app');
+ReactCOM.render(templateTwo, appRoot);
+```
+Very useful link https://reactjs.org/docs/dom-elements.html. All Supported HTML Attributes header lists all the REACT names for html attributes.

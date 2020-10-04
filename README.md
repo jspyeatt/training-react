@@ -402,3 +402,171 @@ Google Search: React DOM events SyntheticEvents is the object. You will see supp
 We want onSubmit event.
 
 # video 19 - arrays
+
+jsx supports arrays by default.
+
+```javascript
+const valuesArray = ["FRED", "GEORGE", "STEVE"];
+{
+   valuesArray.map((v) => {
+      return <p key={v}>{v}</p>;   // you need key= because react requires each dom element to have unique key/id.
+   });  
+}
+```
+
+# video 20 - Picking an option
+
+Conditionally disable a button.
+
+```javascript
+<button disabled={options.length != 0}></button>
+```
+
+# video 21 - Building visibility toggle
+```javascript
+
+```
+
+# video 24 - ES6 Classes Part 1
+```javascript
+class Person {
+
+    constructor(name = 'Anonymous', age = 0) {
+        this.name = name;
+        this.age = age;
+        console.log(name);
+    }
+    getGreeting() {
+        // return 'Hello ' + this.name;
+        return `Hi. I am ${this.name} I'm ${this.age}`;  // ES6 template with backticks
+    }
+    getDescription() {
+        return `I'm ${this.name}. I'm ${this.age}`;
+    }
+}
+class Traveler extends Person {
+    constructor(name, age, home) {
+        super(name, age);
+        this.home = home;
+    }
+    getGreeting() {
+        let grt = super.getGreeting();
+        if (!! this.home) {                         // conditionally append if home isn't undefined.
+            grt += ` I'm from ${this.home}`;
+        }
+        return grt;
+    }
+}
+class Student extends Person {
+    constructor(name, age, major) {
+        super(name, age);
+        this.major = major;
+    }
+    hasMajor() {
+        return !! this.major;  // negate twice so it is Not undefined.
+    }
+    getDescription() {
+        return `My major is ${this.major}`;
+    }
+}
+
+const me = new Person('John Pyeatt', 57);
+console.log(me.getGreeting() + " " + me.getDescription());
+const other = new Person();
+console.log(other.getGreeting());
+const sam = new Student('Sam', 22, 'Comp Sci');
+console.log(sam + " " + sam.hasMajor() + " " + sam.getDescription());
+
+```
+
+# video 26 - Creating a react component
+
+react components are es6 classes. First character must be upper case.
+
+React components require we implement the render() method.
+
+```javascript
+class Header extends React.Component {    // extends React.Component.
+   render() {
+      return <p>This is from Header</p>;
+   };
+}
+class Action extends React.Component {
+   render() {
+      return {
+        <div>
+           <button>What should I do?</button>
+        </div>
+      };
+   }
+}
+
+class Options extends React.Component {
+   render() {
+      return {
+         <div>
+            <button>Do this</button>
+         </div>
+      };
+   }
+}
+
+class AddOption extends React.Component {
+   render() {
+      return {
+         <div>
+            <form>
+               <input type='submit'/>
+            </form>
+         </div>
+      };
+   }
+}
+
+// we now have a react component  (Header) being rendered.
+const jsx = {
+   <div>
+     <Header/>
+     <Action/>
+     <Options/>
+     <AddOption/>
+   </div>
+};
+ReactDOM.render(jsx, document.getElementById('app'));
+```
+
+# video 27 - nesting components
+Create the indecision app component
+
+```javascript
+class IndecisionApp extends React.Component {
+   render() {
+      return {
+         <div>
+           <Header/>
+           <Action/>
+           <Options/>
+           <AddOption/>
+         </div>
+      }
+   }
+}
+
+class Option extends React.Component {
+   render() return {
+      <div>Option</div>
+    };
+}
+class Options extends React.Component {
+   render() {
+      return {
+         <div>
+            <Option/>
+         </div>
+      };
+   }
+}
+
+```
+
+ReactDOM.render(<IndecisionApp/>, document.getElementId('app'));

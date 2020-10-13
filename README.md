@@ -566,7 +566,217 @@ class Options extends React.Component {
       };
    }
 }
+ReactDOM.render(<IndecisionApp/>, document.getElementId('app'));
 
 ```
+# video 28 Component props
+```javascript
+class Header extends React.Component {    // extends React.Component.
+   render() {
+      return {
+        <div>
+           <h1>{this.props.title}</h1>
+           <p>{this.props.subtitle}</p>
+       </div>
+      };
+   };
+}
+class IndecisionApp extends React.Component {
+   const title="IndecisionApp";
+   const subtitle = "trust me";
+   const options = ["Thing one", "Thing two"];
+   render() {
+      return {
+         <div>
+           <Header title={title} subtitle={subtitle}/>
+           <Action/>
+           <Options options={options}/>
+           <AddOption/>
+         </div>
+      }
+   }
+}
+class Option extends React.Component {
+   render() return {
+      <div>Option: {this.props.optionText}</div>
+    };
+}
+class Options extends React.Component {
+   options = this.props.options;
+   render() {
+      return {
+         <div>
+            {this.props.options.map((opt) => <Option key={opt} optionText={opt}/>}
+         </div>
+      };
+   }
+}
+```
 
-ReactDOM.render(<IndecisionApp/>, document.getElementId('app'));
+# video 29 - Events and Methods
+Create self containing class with a class method to handle events.
+
+```javascript
+class Action extends React.Component {
+   handlePick() {
+      console.log("Action picked");
+   }
+   render() {
+      return {
+        <div>
+           <button onClick={this.handlePick}>What should I do?</button>
+        </div>
+      };
+   }
+}
+class Options extends React.Component {
+   options = this.props.options;
+   removeAll() {
+      console.log("removeALl");
+   }
+   render() {
+      return {
+         <div>
+            <button onClick={this.removeAll}>Remove All</button>
+            {this.props.options.map((opt) => <Option key={opt} optionText={opt}/>}
+         </div>
+      };
+   }
+}
+
+class AddOption extends React.Component {
+   handleAddOption(e) {
+      e.preventDefault();  // prevents form submission
+      const option=e.target.elements.option.value.trim();
+      if (option) {
+        alert(option);
+      }
+   }
+   render() {
+      return {
+         <div>
+            <form onSubmit={this.handleAddOption}>
+               <input type="text" name="option"/>
+               <button>Add Option</button>
+            </form>
+         </div>
+      };
+   }
+}
+```
+
+# video 30 - method binding
+You have to do special changes to be able to reference `this` binding in the method removeAll(). We lose context
+to `this` in functions.
+
+```javascript
+const obj = {
+  name: "STEVE",
+  getName() {
+    return this.name;
+  }
+};
+const getName = obj.getName.bind({:name: "Bill"});
+console.log(getName());  // this will work.
+```
+Search: mdn bind - more information on how bind() works.
+
+```javascript
+class Options extends React.Component {
+   constructor(props) {
+      super(props);  // must call super
+      this.removeAll = this.removeAll.bind(this);  // This is the money line: This binds the this object to removeAll().
+   }
+   options = this.props.options;
+   removeAll() {
+      console.log("removeALl");
+   }
+   render() {
+      return {
+         <div>
+            <button onClick={this.removeAll}>Remove All</button>
+            {this.props.options.map((opt) => <Option key={opt} optionText={opt}/>}
+         </div>
+      };
+   }
+}
+```
+
+# video 31 component state - intro
+Allows components to manage data. When the data changes, the component can re-render automatically.
+
+You need to start with a default set of data values for the object.
+
+<Counter/>
+{
+   count: 0
+}
+
+Component gets rendered with default values. But we don't call render() manually.
+
+Then the state of the component changes because of something. So count goes to 1.
+
+Then the component re-renders.
+
+# video 32 Adding state to counter app part 1
+
+```javascript
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props);
+        // doing the binding so we always have props available.
+        this.handleAddOne = this.handleAddOne.bind(this);
+        this.handleMinusOne = this.handleMinusOne.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+
+        this.state = {
+            count: 0,
+            name: "john"
+        };
+    }
+    handleAddOne() {
+        console.log("handleAddOne");
+        this.setState((prevState) => {     //  this.setState allows us to manipulate the state
+                                           //  we define a function to return the new state.
+                                           //  Note we are only updating the count value. The
+                                           //  state.name is unchanged.
+            return {
+                count: prevState.count + 1
+            };
+        });
+    }
+    handleMinusOne() {
+        console.log("handleMinusOne");
+        this.setState((prevState) => {
+            return {
+                count: prevState.count - 1
+            };
+        });
+    }
+    handleReset() {
+        console.log("handleReset");
+        this.setState(() => {
+            return {
+                count: 0
+            };
+        });
+    render() {
+        return (
+            <div>
+                <h1>Count: {this.state.count}</h1>
+                <button onClick={this.handleAddOne}>+1</button>
+                <button onClick={this.handleMinusOne}>-1</button>
+                <button onClick={this.handleReset}>Reset</button>
+            </div>
+        )
+    }
+
+    
+}
+ReactDOM.render(<Counter />, document.getElementById("appHere"));
+```
+
+# video 33 - Adding state to counter app part 2
+
+
